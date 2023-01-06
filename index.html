@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js" defer></script>
+</head>
+<body>
+<div class="container">
+  <div class="wrapper">
+    <div class="time__number" id="timer">0:00</div>
+    <input type="text" class="time__input" id="receive"  placeholder="단위(초)">
+    <button class="btn__start" onClick = 'timer_start()' id="start_btn">타이머 시작</button>
+  </div>
+</div>
+
+<script>
+
+let time = document.getElementById('receive');
+
+let timer_start = () => { 
+
+setInterval(function() {
+let min = Math.floor(time.value / 60);
+let sec = String(time.value % 60).padStart(2, '0');
+
+if(time.value >= 0) {
+  document.getElementById('timer').innerText = min + ':' + sec;
+  document.getElementById("receive").style.display = "none";
+  document.getElementById('start_btn').style.display = "none";
+  time.value -= 1;
+} else {
+  document.getElementById('start_btn').style.display = "block";
+  document.getElementById('start_btn').innerText = "타이머 종료";
+}
+}, 1000);
+
+}
+ 
+</script>
+
+</body>
+</html>
